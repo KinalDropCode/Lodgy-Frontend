@@ -5,8 +5,8 @@ import { RegisterPage } from "./pages/register";
 const routes = [
     { path: '/*', element: <HomePage /> },
     { path: '/login', element: <LoginPage /> },
-    { path: '/register', element: <RegisterPage /> }
-
+    { path: '/register', element: <RegisterPage /> },
+    { path: '/home', element: <HomePage /> }
 
 ]
 

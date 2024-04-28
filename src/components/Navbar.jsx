@@ -25,7 +25,7 @@ const Navbar = () => {
               <div className="flex-none hidden lg:block">
                 <ul className="flex items-center ">
                   {/* Navbar menu content here */}
-                  <li><a className="font-bold transition hover:text-[#947c6c] cursor-pointer mr-4">Home</a></li>
+                  <li><Link to="/home" className="font-bold transition hover:text-[#947c6c] cursor-pointer mr-4">Home</Link></li>
                   <li><a className="font-bold  transition hover:text-[#947c6c] cursor-pointer mr-4">Reservations</a></li>
                   <li><SearchButton /></li>
                   <div className="w-px bg-gray-300 h-12"></div>
