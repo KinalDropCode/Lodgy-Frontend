@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logov2 from '../assets/logov2.svg';
 import SearchButton from "./SerchButton";
 import * as Icon from 'react-feather';
@@ -28,8 +29,8 @@ const Navbar = () => {
                   <li><a className="font-bold  transition hover:text-[#947c6c] cursor-pointer mr-4">Reservations</a></li>
                   <li><SearchButton /></li>
                   <div className="w-px bg-gray-300 h-12"></div>
-                  <li><a className="p-4 rounded-lg cursor-pointer hover:bg-[#887063] transition  bg-[#947c6c] hover text-white mx-2">Sing In</a></li>
-                  <li><a className="btn mr2 my-auto">Sing Up</a></li>
+                  <li><Link to="/login" className="p-4 rounded-lg cursor-pointer hover:bg-[#887063] transition bg-[#947c6c] hover text-white mx-2">Sign In</Link></li>
+                  <li><Link to="/register" className="btn mr2 my-auto">Sign Up</Link></li>
                 </ul>
               </div>
             </div>
