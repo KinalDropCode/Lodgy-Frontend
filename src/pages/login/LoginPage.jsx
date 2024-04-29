@@ -1,13 +1,18 @@
 import '../style.css';
 import Bglogin from '../../assets/Img/bg-login.jpg'
+import logov2 from '../../assets/logov2.svg';
 import { useForm } from 'react-hook-form';
-import logov2 from '../../assets/logov2.svg'
-
-
 import { Mail, Key } from 'react-feather';
 
 
 export const LoginPage = () => {
+
+    const { register, handleSubmit, formState: { errors }, watch } = useForm();
+
+    const onSubmit = handleSubmit((data) => {
+        console.log(data)
+    })
+
     return (
         <div className="bg-white flex justify-center items-center h-screen">
             {/* Left: Image */}
@@ -26,20 +31,40 @@ export const LoginPage = () => {
             {/* Right: Login Form */}
             <div className="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
                 <h1 className="text-2xl font-semibold mb-4">Sing-In</h1>
-                <form action="#" method="POST">
+                <form onSubmit={onSubmit} action="#" method="POST">
                     {/* Username Input */}
                     <div className="mb-4">
-                        <label className="input input-bordered flex items-center gap-2">
+                        <label htmlFor='email' className="input input-bordered flex items-center gap-2">
                             <Mail color='#887063' />
-                            <input type="email" className="grow" placeholder="Email" />
+                            <input type="email" className="grow" placeholder="Email"
+                                {...register("email", {
+                                    required: {
+                                        value: true,
+                                        message: 'Email is required'
+                                    }
+                                })}
+                            />
                         </label>
+                        {
+                            errors.email && <span className="block px-0.5 py-0.5 text-red-500 text-xs font-bold" >{errors.email.message}</span>
+                        }
                     </div>
                     {/* Password Input */}
                     <div className="mb-4">
-                        <label className="input input-bordered flex items-center gap-2">
+                        <label htmlFor='password' className="input input-bordered flex items-center gap-2">
                             <Key color='#887063' />
-                            <input type="password" className="grow" placeholder="Password" />
+                            <input type="password" className="grow" placeholder="Password"
+                                {...register("password", {
+                                    required: {
+                                        value: true,
+                                        message: 'The password is required'
+                                    }
+                                })}
+                            />
                         </label>
+                        {
+                            errors.password && <span className="block px-0.5 py-0.5 text-red-500 text-xs font-bold" >{errors.password.message}</span>
+                        }
                     </div>
                     {/* Remember Me Checkbox */}
                     <div className="mb-4 flex items-center">
