@@ -3,15 +3,61 @@ import Bglogin from '../../assets/Img/bg-login.jpg'
 import logov2 from '../../assets/logov2.svg';
 import { useForm } from 'react-hook-form';
 import { Mail, Key } from 'react-feather';
+import { useLogin } from '../../hooks/useLogin';
 
-
-export const LoginPage = () => {
+export const LoginPage = ({ switchAuthHandler }) => {
 
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
 
     const onSubmit = handleSubmit((data) => {
         console.log(data)
+        
     })
+
+    const { login, isLoading } = useLogin()
+
+    const [formState, setFormState] = useState({
+        email: {
+            value: '',
+            isValid: false,
+            showError: false
+        },
+        password: {
+            value: '',
+            isValid: false,
+            showError: false
+        }
+    });
+
+    const handleInputValidationOnBlur = (value, field) => {
+        let isValid = false;
+        switch (field) {
+            case 'email':
+                isValid = validateEmail(value)
+                break;
+            case 'password':
+                isValid = validatePassword(value)
+                break;
+
+            default:
+                break;
+        }
+        setFormState((prevState) => ({
+            ...prevState,
+            [field]: {
+                ...prevState[field],
+                isValid,
+                showError: !isValid
+            }
+        }));
+    }
+
+    const handleLogin = (event) => {
+        event.preventDefault()
+        login(formState.email.value, formState.password.value)
+    }
+
+    const isSubmitButtonDisable = isLoading || !formState.email.isValid || !formState.password.isValid;
 
     return (
         <div className="bg-white flex justify-center items-center h-screen">
