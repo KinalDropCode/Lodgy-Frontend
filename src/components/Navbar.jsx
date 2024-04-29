@@ -1,8 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import logov2 from '../assets/logov2.svg';
 import SearchButton from "./SerchButton";
-import * as Icon from 'react-feather';
+import { Sidebar } from "./Sidebar";
 
 const Navbar = () => {
   return (
@@ -40,19 +39,7 @@ const Navbar = () => {
 
       </div>
       <div className="drawer-side">
-        <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 min-h-full bg-base-200">
-          {/* Sidebar content here */}
-          <div className="flex mb-5">
-            <img src={logov2} className="w-[50px]" />
-            <span className="font-bold text-2xl	">Lodgy</span>
-          </div>
-          <li><a>Sing In</a></li>
-          <li><a className="my-2">Sing Up</a></li>
-          <div className="h-px bg-gray-300 border-0" ></div>
-          <li><a>Home</a></li>
-          <li><a>Reservations</a></li>
-        </ul>
+        <Sidebar/>
       </div>
     </div>
   );
