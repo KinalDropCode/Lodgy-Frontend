@@ -12,17 +12,21 @@ export const RegisterPage = () => {
     const [selectedPhoto, setSelectedPhoto] = useState(null); // Estado para almacenar la foto seleccionada
 
     const onSubmit = handleSubmit(async (data) => {
-        let photoUrl = null;
-        if (data.photo) {
-            photoUrl = URL.createObjectURL(data.photo[0]);
-        }
-        registerUser(data.fullName, data.email, data.password, photoUrl); // Llama a la función registerUser del hook useRegister
+        const img = selectedPhoto; // Obtener la URL con contenido de datos
+        console.log(img)
+        registerUser(data.fullName, data.email, data.password, img); // Llama a la función registerUser del hook useRegister
     });
+
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setSelectedPhoto(URL.createObjectURL(file));
+            const reader = new FileReader();
+            reader.onload = () => {
+                const imageData = reader.result; // Contenido de la imagen como cadena base64
+                setSelectedPhoto(imageData); // Mostrar la imagen en tu componente
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -51,11 +55,7 @@ export const RegisterPage = () => {
                     <div className="flex flex-col items-center justify-center">
                         <label htmlFor="photo" className="cursor-pointer">
                             <div className="w-20 h-20 rounded-full overflow-hidden">
-                                <img
-                                    src={selectedPhoto || defaultAvatar}
-                                    alt="Avatar"
-                                    className="w-full h-full object-cover"
-                                />
+                                <img src={selectedPhoto || defaultAvatar} alt="Avatar" className="w-full h-full object-cover" />
                             </div>
                         </label>
                         <p className="text-sm font-semibold text-gray-600 mb-3">Select an image</p>

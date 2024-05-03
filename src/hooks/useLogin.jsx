@@ -8,28 +8,26 @@ export const useLogin = () => {
 
     const navigate = useNavigate()
 
-    const login = async(email, password) =>{
+    const login = async (email, password) => {
         setIsLoading(true)
 
         const response = await loginRequest({
             email,
             password
         })
-        console.log(response, 'Hola')
         setIsLoading(false)
 
-        if(response.error){
+        if (response.error) {
             console.log(response.error)
             return toast.error(response.e?.response?.data || 'Ocurrió un error al iniciar sesión, intenta de nuevo')
         }
 
         const { userDetails } = response.data
-
         localStorage.setItem('user', JSON.stringify(userDetails))
 
         navigate('/')
     }
-    return{
+    return {
         login,
         isLoading
     }
