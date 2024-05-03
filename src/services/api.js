@@ -1,31 +1,42 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-    baseURL: 'http://127.0.0.1:27017/lodgy/v1',
+    baseURL: 'http://127.0.0.1:3000/lodgy/v1',
     timeout: 5000
 });
 
+
 apiClient.interceptors.request.use(
     (config) => {
-        const useUserDetails = localStorage.getItem('user');
+        const userDetails = localStorage.getItem('user');
 
-        if(useUserDetails){
-            const token = JSON.parse(useUserDetails).token
+        if (userDetails) {
+            const { token } = JSON.parse(userDetails);
             config.headers.Authorization = `Bearer ${token}`;
         }
-
         return config;
     },
-    (e) => {
-        return Promise.reject(e);
+    (error) => {
+        return Promise.reject(error);
     }
-)
+);
 
 export const login = async (data) => {
     try {
         return await apiClient.post('/auth/login', data);
     } catch (e) {
-        return{
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
+export const register = async (data) => {
+    try {
+        return await apiClient.post('/auth/register', data);
+    } catch (e) {
+        return {
             error: true,
             e
         }
