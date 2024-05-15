@@ -45,7 +45,6 @@ const Navbar = () => {
                     <>
                       {userDetails.role === 'ADMIN_ROLE' && (
                         <>
-                          <li><Link to="/dashboard" className="btn btn-warning ml-2">Hotels</Link></li>
                           <div className="dropdown dropdown-end mx-2">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                               <div className="w-10 rounded-full">
@@ -54,6 +53,7 @@ const Navbar = () => {
                             </div>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                               <li><Link to="/information">Your account</Link></li>
+                              <li><Link to="/dashboard">Administration</Link></li>
                               <li><a onClick={handleLogout}>Logout</a></li>
                             </ul>
                           </div>
