@@ -34,38 +34,46 @@ const Navbar = () => {
                   <li><a className="font-bold  transition hover:text-[#947c6c] cursor-pointer mr-4">Reservations</a></li>
                   <li><SearchButton /></li>
                   <div className="w-px bg-gray-300 h-12"></div>
-                  {isLogged && userDetails.role === 'ADMIN_ROLE' && (
+
+
+                  {!isLogged ? (
                     <>
-                      <li><Link to="/dashboard" className="btn btn-warning ml-2">Hotels</Link></li>
-                      <div className="dropdown dropdown-end mx-2">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                          <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src={userDetails.img} />
+                      <li><Link to="/login" className="btn mx-2 my-auto bg-[#947c6c] hover:bg-[#887063] text-white ">Sign Up</Link></li>
+                      <li><Link to="/register" className="btn mr2 my-auto">Sign Up</Link></li>
+                    </>
+                  ) : (
+                    <>
+                      {userDetails.role === 'ADMIN_ROLE' && (
+                        <>
+                          <li><Link to="/dashboard" className="btn btn-warning ml-2">Hotels</Link></li>
+                          <div className="dropdown dropdown-end mx-2">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                              <div className="w-10 rounded-full">
+                                <img alt="Tailwind CSS Navbar component" src={userDetails.img} />
+                              </div>
+                            </div>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                              <li><Link to="/information">Your account</Link></li>
+                              <li><a onClick={handleLogout}>Logout</a></li>
+                            </ul>
                           </div>
+                        </>
+                      )}
+                      {userDetails.role === 'USER_ROLE' && (
+                        <div className="dropdown dropdown-end mx-2">
+                          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                              <img alt="Tailwind CSS Navbar component" src={userDetails.img} />
+                            </div>
+                          </div>
+                          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <li><Link to="/information">Your account</Link></li>
+                            <li><a onClick={handleLogout}>Logout</a></li>
+                          </ul>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                          <li><Link to="/information">Your account</Link></li>
-                          <li><a onClick={handleLogout}>Logout</a></li>
-                        </ul>
-                      </div>
+                      )}
                     </>
                   )}
-
-                  {isLogged && userDetails.role === 'USER_ROLE' && (
-                    <div className="dropdown dropdown-end mx-2">
-                      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                          <img alt="Tailwind CSS Navbar component" src={userDetails.img} />
-                        </div>
-                      </div>
-                      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><Link to="/information">Your account</Link></li>
-                        <li><a onClick={handleLogout}>Logout</a></li>
-                      </ul>
-                    </div>
-                  )}
-
-
                 </ul>
               </div>
             </div>
