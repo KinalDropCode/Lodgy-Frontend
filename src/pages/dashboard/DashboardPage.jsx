@@ -1,5 +1,5 @@
 import React from "react";
-import { Sidebar } from "../../components/navbar/SidebarDashBoardPage";
+import { Sidebar } from "../../components/dashboard/Sidebar";
 
 export const DashboardPage = () => {
   return (

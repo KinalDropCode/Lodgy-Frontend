@@ -42,3 +42,14 @@ export const register = async (data) => {
         }
     }
 }
+
+export const updateUser = async (data) => {
+    try {
+        return await apiClient.put('/auth/userEdit', data);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}

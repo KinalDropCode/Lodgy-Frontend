@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Mail, Key, User } from 'react-feather';
 import { useRegister } from '../../hooks/useRegister';
 import '../style.css';
 import defaultAvatar from '../../assets/Img/user.jpg';
 import Bglogin from '../../assets/Img/bg-login.jpg';
+import { Link } from 'react-router-dom';
 
 export const RegisterPage = () => {
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
-    const { registerUser, isLoading } = useRegister();
-    const [selectedPhoto, setSelectedPhoto] = useState(null); // Estado para almacenar la foto seleccionada
 
+    const { registerUser, isLoading } = useRegister();
+    const [selectedPhoto, setSelectedPhoto] = useState(null);
     const onSubmit = handleSubmit(async (data) => {
-        const img = selectedPhoto; // Obtener la URL con contenido de datos
+        const img = selectedPhoto;
         console.log(img)
-        registerUser(data.fullName, data.email, data.password, img); // Llama a la función registerUser del hook useRegister
+        registerUser(data.fullName, data.email, data.password, img);
     });
 
 
@@ -23,8 +24,8 @@ export const RegisterPage = () => {
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                const imageData = reader.result; // Contenido de la imagen como cadena base64
-                setSelectedPhoto(imageData); // Mostrar la imagen en tu componente
+                const imageData = reader.result;
+                setSelectedPhoto(imageData);
             };
             reader.readAsDataURL(file);
         }
@@ -79,7 +80,6 @@ export const RegisterPage = () => {
                             <User className="h-5 w-5 text-gray-400" />
                             <input type="text" className="pl-2 outline-none border-none" placeholder="Full Name" {...register("fullName", {
                                 required: "Full name is required",
-                                minLength: { value: 6, message: "Full name must be at least 6 characters" },
                                 maxLength: { value: 50, message: "Full name must not exceed 50 characters" }
                             })} />
                         </div>
@@ -92,6 +92,7 @@ export const RegisterPage = () => {
                             <Mail className="h-5 w-5 text-gray-400" />
                             <input type="email" className="pl-2 outline-none border-none" placeholder="Email" {...register("email", {
                                 required: "Email is required",
+                                pattern: { value: /^\S+@\S+$/i, message: "Invalid email address", },
                                 minLength: { value: 8, message: "Email must be at least 8 characters" },
                                 maxLength: { value: 40, message: "Email must not exceed 40 characters" }
                             })} />
@@ -124,8 +125,13 @@ export const RegisterPage = () => {
                         {errors.confirmPassword && <span className="text-red-500 ml-8">{errors.confirmPassword.message}</span>}
                     </div>
 
-                    <button type="submit" className="block w-full bg-[#887063]  hover:bg-[#947c6c] transition mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Register</button>
+                    <button type="submit" className="block w-full bg-[#887063] h-12 hover:bg-[#947c6c] transition mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Register</button>
+                    <div className="text-center mt-4">
+                        <p className="text-gray-600">Already have an account?</p>
+                        <Link to="/login" className="text-blue-500 hover:underline">Log in here</Link>
+                    </div>
                 </form>
+
             </div>
         </div >
     );

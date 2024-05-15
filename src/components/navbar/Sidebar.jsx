@@ -25,8 +25,7 @@ export const Sidebar = () => {
         {!isLogged ? (
           <>
             <li><Link to="/login">Sing In</Link></li>
-            <li><Link to="/register" className="my-2">Sing Up</Link>
-            </li>
+            <li><Link to="/register" className="my-2">Sing Up</Link></li>
           </>
         ) : (
           <>
@@ -34,15 +33,13 @@ export const Sidebar = () => {
               <img alt="Tailwind CSS Navbar component" className="rounded-full" src={userDetails.img} />
               <span className="ml-2 my-auto w-full">{userDetails.name}</span>
             </div>
+            <li><Link to="/information">My account</Link></li>
+            <li><a href="/information/">Perfil</a></li>
           </>
         )}
         <div className="h-px bg-gray-300 border-0"></div>
-        <li>
-          <a>Home</a>
-        </li>
-        <li>
-          <a>Reservations</a>
-        </li>
+        <li><Link to="/">Home</Link></li>
+        <li><a>Reservations</a></li>
       </ul>
     </>
   );
