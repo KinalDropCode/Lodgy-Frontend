@@ -54,6 +54,17 @@ export const updateUser = async (data) => {
     }
 }
 
+export const getHotels = async () => {
+    try {
+        return await apiClient.get('/hotel');
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
 export const createHotel = async (data) => {
     try {
         return await apiClient.put('/hotel/register', data);
