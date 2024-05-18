@@ -10,7 +10,7 @@ export const InformationPage = () => {
     return (
         <>
             <Navbar />
-            <div className="bg-white w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
+            <div className="bg-white w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row">
                 <Sidebar />
                 <Content useDetails={userDetails} />
             </div>

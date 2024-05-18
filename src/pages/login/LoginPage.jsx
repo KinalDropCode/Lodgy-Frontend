@@ -1,17 +1,16 @@
 import { Key, Mail } from "react-feather";
 import { useForm } from "react-hook-form";
-import { useLogin } from "../../hooks/useLogin";
+import { useAuth } from "../../hooks/useAuth";
 import { useUserDetails } from "../../hooks/useUserDetails";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { toast } from 'react-hot-toast';
 import Bglogin from "../../assets/Img/bg-login.jpg";
 import "../style.css";
 
 export const LoginPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { login, isLoading } = useLogin();
+  const { login, isLoading } = useAuth();
   const { isLogged } = useUserDetails();
   const navigate = useNavigate()
 

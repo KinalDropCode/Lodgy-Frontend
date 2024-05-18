@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Mail, Key, User } from 'react-feather';
-import { useRegister } from '../../hooks/useRegister';
-import '../style.css';
+import { useAuth } from '../../hooks/useAuth';
 import defaultAvatar from '../../assets/Img/user.jpg';
 import Bglogin from '../../assets/Img/bg-login.jpg';
 import { Link } from 'react-router-dom';
@@ -10,7 +9,7 @@ import { Link } from 'react-router-dom';
 export const RegisterPage = () => {
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
 
-    const { registerUser, isLoading } = useRegister();
+    const { registerUser, isLoading } = useAuth();
     const [selectedPhoto, setSelectedPhoto] = useState(null);
     const onSubmit = handleSubmit(async (data) => {
         const img = selectedPhoto;

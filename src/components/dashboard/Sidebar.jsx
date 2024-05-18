@@ -1,22 +1,46 @@
+import { Menu, Home, Briefcase } from "react-feather";
+import icon from "../../../public/logov2.svg";
+import { MdSpaceDashboard } from "react-icons/md";
+import { GoHomeFill } from "react-icons/go";
+import { FaHotel } from "react-icons/fa6";
+import { FaLuggageCart } from "react-icons/fa";
+import { FaBed } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 export const Sidebar = () => {
     return (
-        <div className="drawer lg:drawer-open">
-            <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className=" flex flex-col justify-center">
-                {/* Page content here */}
-                <label htmlFor="my-drawer-2" className="btn btn-primary lg:hidden">Open drawer</label>
-
-            </div>
-            <div className="drawer-side">
-                <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-                    {/* Sidebar content here */}
-                    <li><a>Sidebar Item 1</a></li>
-                    <li><a>Sidebar Item 2</a></li>
-                </ul>
-
-            </div>
-        </div>
+        <>
+            <nav className="sticky top-0 w-72 h-screen flex-col justify-between shadow-lg  hidden md:flex -translate-x-full transform bg-white p-4 transition-transform duration-150 ease-in md:translate-x-0 md:shadow-md">
+                <div className="bg-white h-full">
+                    <div className="flex justify-center py-10 shadow-sm pr-4">
+                        <img src={icon} alt="icon" className="w-28" />
+                        <div className="pl-2">
+                            <p className="text-2xl font-bold text-[#643914]">LODGY</p>
+                            <span className="text-xs block text-gray-800">DASHBOARD</span>
+                        </div>
+                    </div>
+                    <div className="pl-10">
+                        <ul className="space-y-8 pt-10">
+                            <li className="flex space-x-4 items-center hover:text-[#643914] cursor-pointer">
+                                <GoHomeFill size={24} />
+                                <Link to="/">Inicio</Link>
+                            </li>
+                            <li className="flex space-x-4 items-center hover:text-[#643914] cursor-pointer">
+                                <MdSpaceDashboard size={24} />
+                                <Link to="/dashboard/">Dashboard</Link>
+                            </li>
+                            <li className="flex space-x-4 items-center hover:text-[#643914] cursor-pointer">
+                                <FaLuggageCart size={24} />
+                                <Link to="/dashboard/hotel">Hoteles</Link>
+                            </li>
+                            <li className="flex space-x-4 items-center hover:text-[#643914] cursor-pointer">
+                                <FaBed size={24} />
+                                <Link to="/dashboard/room">Habitaciones</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </>
     );
 };

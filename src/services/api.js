@@ -53,3 +53,14 @@ export const updateUser = async (data) => {
         }
     }
 }
+
+export const createHotel = async (data) => {
+    try {
+        return await apiClient.put('/hotel/register', data);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}

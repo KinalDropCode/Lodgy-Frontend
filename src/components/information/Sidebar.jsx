@@ -9,11 +9,11 @@ export const Sidebar = () => {
 
                     <h2 className="pl-3 mb-4 text-2xl font-semibold">Information</h2>
 
-                    <a href="/information/profile" className="flex items-center px-3 py-2.5 font-bold bg-white text-[#643914] border rounded-full">
+                    <Link To="/information/profile" className="flex items-center px-3 py-2.5 font-bold bg-white text-[#643914] border rounded-full">
                         Profile
-                    </a>
+                    </Link>
                     <a href="#" className="flex items-center px-3 py-2.5 font-semibold hover:text-[#643914]">
-                        Reeservation history
+                        Reservations
                     </a>
                     <a href="#" className="flex items-center px-3 py-2.5 font-semibold hover:text-[#643914]">
                         Change password
