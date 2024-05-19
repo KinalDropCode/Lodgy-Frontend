@@ -54,9 +54,9 @@ export const updateUser = async (data) => {
     }
 }
 
-export const getHotels = async () => {
+export const createHotel = async (id, data) => {
     try {
-        return await apiClient.get('/hotel');
+        return await apiClient.post(`/hotel/${id}`, data);
     } catch (e) {
         return {
             error: true,
@@ -65,9 +65,20 @@ export const getHotels = async () => {
     }
 }
 
-export const createHotel = async (data) => {
+export const getHotelsByIdAdmin = async (id) => {
     try {
-        return await apiClient.put('/hotel/register', data);
+        return await apiClient.get(`/hotel/${id}`);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
+export const deleteHotel = async (id) => {
+    try {
+        return await apiClient.delete(`/hotel/${id}`);
     } catch (e) {
         return {
             error: true,

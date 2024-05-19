@@ -1,33 +1,30 @@
 import React from 'react';
+import { FaTrashAlt } from "react-icons/fa";
+import { useHotel } from '../../hooks/useHotel';
 
-export const Card = ({
-    id,
-    name,
-    address,
-    phone,
-    email,
-    rooms,
-    reviews,
-    events
-}) => {
+export const Card = ({ data, getHoteles }) => {
+
+    const { _id, name, address, phone, email, img, desc } = data;
+    const { removeHotel } = useHotel()
+
+    const onDelete = async () => {
+        await removeHotel(_id);
+        window.location.reload()
+    }
+
     return (
-        <div className="w-full   lg:flex h-72 rounded-lg overflow-hidden shadow-md">
-            <div className="h-48 lg:h-auto lg:w-72 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{ backgroundImage: "url('https://tailwindcss.com/img/card-left.jpg')" }} title="Woman holding a mug">
-            </div>
-            <div className="bg-white p-4 flex flex-col justify-between leading-normal">
-                <div className="mb-8">
-                    <p className="text-sm text-grey-dark flex items-center">
-                        {address}
-                    </p>
-                    <div className="text-black font-bold text-xl mb-2">{name}</div>
-                    <p className="text-grey-darker text-base">{phone}</p>
-                </div>
-                <div className="flex items-center">
-                    <img className="w-10 h-10 rounded-full mr-4" src="https://pbs.twimg.com/profile_images/885868801232961537/b1F6H4KC_400x400.jpg" alt="Avatar of Jonathan Reinink" />
-                    <div className="text-sm">
-                        <p className="text-black leading-none">{email}</p>
-                        <p className="text-grey-dark">{rooms}</p>
-                    </div>
+        <div className="card lg:card-side bg-base-100 shadow-xl w-full">
+            <figure className="w-72 h-72 bg-cover">
+                <img src={img} alt="Album" className="object-cover w-full h-full" />
+            </figure>
+            <div className="card-body w-2/3 h-full flex flex-col justify-between">
+                <h2 className="card-title">{name}</h2>
+                <p>{address}</p>
+                <p>{phone}</p>
+                <p>{email}</p>
+                <p>{desc}</p>
+                <div className="card-actions justify-end">
+                    <button className="hover:text-red-600" onClick={onDelete}><FaTrashAlt /></button>
                 </div>
             </div>
         </div>

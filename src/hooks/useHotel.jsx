@@ -1,27 +1,49 @@
-import { createHotel } from "../services";
+import { useNavigate } from "react-router-dom";
+import { createHotel, getHotelsByIdAdmin, deleteHotel } from "../services";
 import { useState } from "react";
-import { getHotels as getHotelsRequest } from "../services";
-import toast from "react-hot-toast"; // Asegúrate de importar toast si lo usas
+import toast from "react-hot-toast";
+
 
 export const useHotel = () => {
-    const [hotels, setHotels] = useState(null);
+    const [hotels, setHotels] = useState([]);
+    const navigate = useNavigate()
 
-    const getHotels = async () => {
-        const hotelsData = await getHotelsRequest();
-        
-        if (hotelsData.error) {
-            toast.error(
-                hotelsData.e?.response?.data || 'Ocurrió un error al leer los hoteles'
-            );
-            return;
+    const getHotelsByAdmin = async (id) => {
+        const response = await getHotelsByIdAdmin(id);
+
+        if (response.error) {
+            console.log(response.e); // Imprime el objeto de error
+            console.log(response.e?.response); // Imprime la respuesta del servidor
+            console.log(response.e?.response?.data); // Imprime los datos de la respuesta
+            console.log(response.error)
+            return toast.error(response.e?.response?.data || 'Ocurrió un error al listar')
         }
 
-        setHotels(hotelsData.data.hotels);
-    };
+        setHotels(response.data)
+    }
 
+    const addHotel = async (data, id) => {
+        const response = await createHotel(id, data);
+        if (response.error) {
+            console.log(response.error)
+            return toast.error(response.e?.response?.data || 'Ocurrió un error al agregar')
+        }
+    }
+
+    const removeHotel = async (id) => {
+        console.log(id)
+        const response = await deleteHotel(id);
+        console.log(response.data)
+        if (response.error) {
+            console.log(response.error)
+            return toast.error(response.e?.response?.data || 'Ocurrió un error al agregar')
+        }
+    }
     return {
-        getHotels,
-        isFetching: !Boolean(hotels),
-        allHotels: hotels
-    };
-};
+        getHotelsByAdmin,
+        isFetching: hotels.length === 0,
+        addHotel,
+        removeHotel,
+        hotels
+    }
+}

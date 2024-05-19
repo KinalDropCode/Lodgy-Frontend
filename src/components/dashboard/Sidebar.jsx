@@ -12,7 +12,7 @@ export const Sidebar = () => {
         <>
             <nav className="sticky top-0 w-72 h-screen flex-col justify-between shadow-lg  hidden md:flex -translate-x-full transform bg-white p-4 transition-transform duration-150 ease-in md:translate-x-0 md:shadow-md">
                 <div className="bg-white h-full">
-                    <div className="flex justify-center py-10 shadow-sm pr-4">
+                    <div className="flex justify-center py-10 pr-4">
                         <img src={icon} alt="icon" className="w-28" />
                         <div className="pl-2">
                             <p className="text-2xl font-bold text-[#643914]">LODGY</p>
