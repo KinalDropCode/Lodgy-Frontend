@@ -14,7 +14,7 @@ export const Content = ({ useDetails }) => {
                 <Routes>
                     <Route path="/" element={<DashBoard />} />
                     <Route path="/hotel" element={<Hotel user={useDetails} />} />
-                    <Route path="/room" element={<Rooms />} />
+                    <Route path="/room" element={<Rooms user={useDetails}/>} />
                 </Routes>
             </div>
         </>

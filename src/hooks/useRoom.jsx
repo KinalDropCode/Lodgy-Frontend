@@ -1,20 +1,28 @@
 import React from 'react'
 import { useState } from 'react'
+import { getRoomsByIdAdmin } from '../services';
 
 export const useRoom = () => {
-    const { room, setRoom } = useState();
+    const [rooms, setRooms] = useState([]);
 
-    const getRoom = async (id) => {
-        const response = await getRooms(id);
-        if (response.error) {
-            console.log(response.error)
-            return toast.error(response.e?.response?.data || 'Ocurrió un error al iniciar sesión, intenta de nuevo')
+    const getRooms = async (id) => {
+        try {
+            const response = await getRoomsByIdAdmin(id);
+            if (response.error) {
+                console.error(response.error);
+                toast.error(response.e?.response?.data || 'Ocurrió un error al obtener las habitaciones');
+            } else {
+                setRooms(response.data);
+            }
+        } catch (error) {
+            console.error('Error fetching rooms:', error);
+            toast.error('Ocurrió un error al obtener las habitaciones');
         }
-        setRoom(response.data);
-    }
+    };
 
     return {
-        getRoom,
-        room
-    }
-}
+        getRooms,
+        isFetching: rooms.length === 0,
+        rooms
+    };
+};

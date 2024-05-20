@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { Search } from 'react-feather'
 import { TableRoom } from '../room/TableRoom'
 import { Plus } from 'react-feather'
+import { useForm } from 'react-hook-form'
+import { useRoom } from '../../hooks/useRoom'
 
-export const Rooms = () => {
+export const Rooms = ({ user }) => {
+
+    const { getRooms, rooms} = useRoom();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+    useEffect(() => {
+        getRooms(user.id);
+    }, [user.id]);
+
+    console.log("Rooms:", rooms);
+
     return (
         <>
             <section className="container px-4 mx-auto mt-6">
@@ -40,7 +53,7 @@ export const Rooms = () => {
                     </div>
                 </div>
             </section>
-            <TableRoom />
+            <TableRoom rooms={rooms} getRoomsByIdAdmin={getRooms}/>
         </>
     )
 }

@@ -86,3 +86,14 @@ export const deleteHotel = async (id) => {
         }
     }
 }
+
+export const getRoomsByIdAdmin = async (id) => {
+    try {
+        return await apiClient.get(`/room/${id}`);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
