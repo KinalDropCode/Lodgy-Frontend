@@ -4,10 +4,11 @@ import { TableRoom } from '../room/TableRoom'
 import { Plus } from 'react-feather'
 import { useForm } from 'react-hook-form'
 import { useRoom } from '../../hooks/useRoom'
+import { FaRegSadCry } from 'react-icons/fa';
 
 export const Rooms = ({ user }) => {
 
-    const { getRooms, rooms} = useRoom();
+    const { getRooms, isFetching, rooms } = useRoom();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [selectedPhoto, setSelectedPhoto] = useState(null);
 
@@ -53,7 +54,20 @@ export const Rooms = ({ user }) => {
                     </div>
                 </div>
             </section>
-            <TableRoom rooms={rooms} getRoomsByIdAdmin={getRooms}/>
+            {isFetching ? (
+                <>
+                    <div className="flex items-center h-96 justify-center flex-col gap-4">
+                        <FaRegSadCry size={100} />
+                        <p className="text-gray-500 text-lg ">
+                            ¡Oops! No hay habitaciones aun
+                        </p>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <TableRoom rooms={rooms} getRoomsByIdAdmin={getRooms} />
+                </>
+            )}
         </>
     )
 }
