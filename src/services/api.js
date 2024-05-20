@@ -97,3 +97,14 @@ export const getRoomsByIdAdmin = async (id) => {
         }
     }
 }
+
+export const createRoom = async (id, data) => {
+    try {
+        return await apiClient.post(`/room/${id}`, data);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}

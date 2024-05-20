@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { getRoomsByIdAdmin } from '../services';
+import { getRoomsByIdAdmin, createRoom } from '../services';
 
 export const useRoom = () => {
     const [rooms, setRooms] = useState([]);
@@ -20,9 +20,18 @@ export const useRoom = () => {
         }
     };
 
+    const addRoom = async (data, id) => {
+        const response = await createRoom(id, data);
+        if (response.error) {
+            console.log(response.error)
+            return toast.error(response.e?.response?.data || 'Ocurrió un error al agregar')
+        }
+    }
+
     return {
         getRooms,
         isFetching: rooms.length === 0,
-        rooms
+        rooms,
+        addRoom
     };
 };
