@@ -2,14 +2,14 @@ import React from 'react';
 import { FaTrashAlt } from "react-icons/fa";
 import { useHotel } from '../../hooks/useHotel';
 
-export const Card = ({ data, getHoteles }) => {
+export const Card = ({ data, getHotels, role = "" }) => {
 
     const { _id, name, address, phone, email, img, desc } = data;
     const { removeHotel } = useHotel()
 
     const onDelete = async () => {
         await removeHotel(_id);
-        window.location.reload()
+        getHotels();
     }
 
     return (
@@ -23,9 +23,21 @@ export const Card = ({ data, getHoteles }) => {
                 <p>{phone}</p>
                 <p>{email}</p>
                 <p>{desc}</p>
-                <div className="card-actions justify-end">
-                    <button className="hover:text-red-600" onClick={onDelete}><FaTrashAlt /></button>
-                </div>
+                {role && role === 'ADMIN_ROLE' ? (
+                    <>
+                        <div className="card-actions justify-end items-center">
+                            <button className="hover:text-red-600" onClick={onDelete}><FaTrashAlt /></button>
+                            <button className="btn btn-primary">Ver habitaciones</button>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">Ver habitaciones</button>
+                        </div>
+                    </>
+                )}
+
             </div>
         </div>
     );

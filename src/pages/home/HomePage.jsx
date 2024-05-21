@@ -1,8 +1,21 @@
+import { useEffect } from "react"
 import Navbar from "../../components/navbar/Navbar"
 import home from "../../assets/Img/home.jpg"
 import '../style.css'
+import { useHotel } from "../../hooks/useHotel";
+import { useUserDetails } from "../../hooks/useUserDetails";
+import { Card } from "../../components/hotel/Card"
 
 export const HomePage = () => {
+    const { userDetails } = useUserDetails();
+   
+
+    const { getHotel, hotels } = useHotel();
+
+    useEffect(() => {
+        getHotel()
+    }, []);
+
 
     return (
         <>
@@ -17,6 +30,14 @@ export const HomePage = () => {
                     </div>
                 </div>
             </div>
+            <div className="max-w-screen-2xl mx-auto p-5 sm:p-10 md:p-16">
+                <div className="flex flex-col justify-center items-center gap-4 w-full">
+                    {hotels.map(hotel => (
+                        <Card key={hotel._id} data={hotel} />
+                    ))}
+                </div>
+            </div>
+
         </>
 
     )

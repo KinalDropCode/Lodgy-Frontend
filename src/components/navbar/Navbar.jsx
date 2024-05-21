@@ -38,7 +38,7 @@ const Navbar = () => {
 
                   {!isLogged ? (
                     <>
-                      <li><Link to="/login" className="btn mx-2 my-auto bg-[#947c6c] hover:bg-[#887063] text-white ">Sign Up</Link></li>
+                      <li><Link to="/login" className="btn mx-2 my-auto bg-[#947c6c] hover:bg-[#887063] text-white ">Sign In</Link></li>
                       <li><Link to="/register" className="btn mr2 my-auto">Sign Up</Link></li>
                     </>
                   ) : (

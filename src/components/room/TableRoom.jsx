@@ -18,15 +18,10 @@ export const TableRoom = ({ rooms, getRoomsByIdAdmin }) => {
                                 </tr>
                             </thead>
                             <tbody className="bg-white">
-                                {rooms.length > 0 ? (
-                                    rooms.map((room) => (
-                                        <RowRoom key={room._id} data={room} getRooms={getRoomsByIdAdmin} />
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan="5" className="text-center text-gray-500 py-3">No hay habitaciones disponibles</td>
-                                    </tr>
-                                )}
+                                {rooms.map((room) => (
+                                    <RowRoom key={room.uid} data={room} getRooms={getRoomsByIdAdmin} />
+                                ))}
+
                             </tbody>
                         </table>
                     </div>

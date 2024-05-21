@@ -8,6 +8,8 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 
 export const Hotel = ({ user }) => {
+
+
     const { getHotelsByAdmin, hotels: allHotels, isFetching, addHotel } = useHotel();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [selectedPhoto, setSelectedPhoto] = useState(null);
@@ -71,14 +73,20 @@ export const Hotel = ({ user }) => {
         setPhotoUploaded(false);
     };
 
+    const reloadHotels = () => {
+        getHotelsByAdmin(user.id);
+
+    }
+
     const onSubmit = async (data) => {
         const img = selectedPhoto;
         const { name, address, phone, email, desc } = data;
         const userId = user.id;
         await addHotel({ name, address, phone, email, img, desc }, userId);
-        reset();
         document.getElementById('my_modal_2').close();
-        // Después de agregar un hotel, actualiza la lista de hoteles
+        reset();
+        setPhotoUploaded(false);
+        setSelectedPhoto(null);
         getHotelsByAdmin(userId);
     };
 
@@ -253,7 +261,7 @@ export const Hotel = ({ user }) => {
                     ) : (
                         <div className="flex flex-col justify-center items-center gap-4 w-full">
                             {hotels.map(hotel => (
-                                <Card key={hotel._id} data={hotel} getHoteles={getHotelsByAdmin} />
+                                <Card key={hotel._id} data={hotel} getHotels={reloadHotels} role={user.role} />
                             ))}
                         </div>
                     )}

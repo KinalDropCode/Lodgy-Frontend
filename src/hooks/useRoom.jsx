@@ -5,7 +5,7 @@ import { getRoomsByIdAdmin, createRoom, deleteRoom, editRoom, searchRoomsByNumbe
 export const useRoom = () => {
     const [rooms, setRooms] = useState([]);
 
-    const getRooms = async (id) => {
+    const getRoomsByAdmin = async (id) => {
         try {
             const response = await getRoomsByIdAdmin(id);
             if (response.error) {
@@ -24,6 +24,8 @@ export const useRoom = () => {
         const response = await createRoom(id, data);
         if (response.error) {
             console.log(response.error)
+            console.log(response.data)
+            console.log(response.e)
             return toast.error(response.e?.response?.data || 'Ocurrió un error al agregar')
         }
     }
@@ -58,7 +60,7 @@ export const useRoom = () => {
     };
 
     return {
-        getRooms,
+        getRoomsByAdmin,
         isFetching: rooms.length === 0,
         rooms,
         addRoom,

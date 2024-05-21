@@ -87,6 +87,18 @@ export const getHotelsByIdAdmin = async (id) => {
     }
 }
 
+export const getHotels = async () => {
+    try {
+        return await apiClient.get(`/hotel/`);
+    } catch (error) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
+
 export const deleteHotel = async (id) => {
     try {
         return await apiClient.delete(`/hotel/${id}`);
@@ -144,7 +156,7 @@ export const editRoom = async (idRoom, data) => {
 
 export const searchRoomsByNumberRoom = async (numberRoom) => {
     try {
-        return await apiClient.get('/search', { numberRoom });
+        return await apiClient.get('/search', { params: { numberRoom } });
     } catch (e) {
         return {
             error: true,

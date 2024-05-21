@@ -12,7 +12,7 @@ import { MdDelete } from "react-icons/md";
 
 export const Rooms = ({ user }) => {
 
-    const { getRooms, isFetching, rooms, addRoom } = useRoom();
+    const { getRoomsByAdmin, isFetching, rooms, addRoom } = useRoom();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [selectedPhoto, setSelectedPhoto] = useState(null);
     const [dragging, setDragging] = useState(false);
@@ -20,7 +20,7 @@ export const Rooms = ({ user }) => {
     const { getHotelsByAdmin, hotels } = useHotel();
 
     useEffect(() => {
-        getRooms(user.id);
+        getRoomsByAdmin(user.id);
     }, [user.id]);
 
     useEffect(() => {
@@ -74,11 +74,10 @@ export const Rooms = ({ user }) => {
         const img = selectedPhoto;
         const { numberRoom, price, desc, availability, capacity, hotel } = data;
         const userId = user.id;
-        await addRoom({ numberRoom, price, desc, availability, capacity, img, hotel}, userId);
+        await addRoom({ numberRoom, price, desc, availability, capacity, img, hotel }, userId);
         reset();
         document.getElementById('my_modal_2').close();
-        // Después de agregar un hotel, actualiza la lista de hoteles
-        getRooms(userId);
+        getRoomsByAdmin(userId);
     };
 
     const close = () => {
@@ -266,7 +265,7 @@ export const Rooms = ({ user }) => {
                 </>
             ) : (
                 <>
-                    <TableRoom rooms={rooms} getRoomsByIdAdmin={getRooms} />
+                    <TableRoom rooms={rooms} />
                 </>
             )}
         </>
