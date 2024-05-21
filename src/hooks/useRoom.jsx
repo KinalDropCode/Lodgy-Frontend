@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { getRoomsByIdAdmin, createRoom, deleteRoom, editRoom, searchRoomsByNumberRoom } from '../services';
+import { getRoomsByIdAdmin, createRoom, deleteRoom, editRoom, searchRoomsByNumberRoom, getRoomsByIdHotel } from '../services';
 
 export const useRoom = () => {
     const [rooms, setRooms] = useState([]);
@@ -28,6 +28,17 @@ export const useRoom = () => {
             console.log(response.e)
             return toast.error(response.e?.response?.data || 'Ocurrió un error al agregar')
         }
+    }
+
+    const getRoomsByHotel = async (id) => {
+        const response = await getRoomsByIdHotel(id);
+        if (response.error) {
+            console.log(response.error)
+            console.log(response.data)
+            console.log(response.e)
+            return toast.error(response.e?.response?.data || 'Ocurrió un error al agregar')
+        }
+        setRooms(response.data);
     }
 
     const removeRoom = async (id) => {
@@ -66,6 +77,7 @@ export const useRoom = () => {
         addRoom,
         removeRoom,
         updateRoom,
-        searchRoomByNumber
+        searchRoomByNumber,
+        getRoomsByHotel
     };
 };

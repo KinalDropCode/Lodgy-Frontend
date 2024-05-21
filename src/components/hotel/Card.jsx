@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaTrashAlt } from "react-icons/fa";
 import { useHotel } from '../../hooks/useHotel';
+import { Link } from 'react-router-dom';
 
 export const Card = ({ data, getHotels, role = "" }) => {
 
@@ -33,7 +34,7 @@ export const Card = ({ data, getHotels, role = "" }) => {
                 ) : (
                     <>
                         <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Ver habitaciones</button>
+                            <Link to={`/hotel/${_id}`} className="btn btn-primary">Ver habitaciones</Link>
                         </div>
                     </>
                 )}

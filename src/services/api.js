@@ -164,3 +164,14 @@ export const searchRoomsByNumberRoom = async (numberRoom) => {
         }
     }
 }
+
+export const getRoomsByIdHotel = async (id) => {
+    try {
+        return await apiClient.get(`/room/hotel/${id}`);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}

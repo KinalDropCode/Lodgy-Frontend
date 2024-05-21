@@ -136,7 +136,7 @@ export const Rooms = ({ user }) => {
                                             {...register("price", { required: true })}
                                             className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.address ? "border-red-500" : ""}`}
                                             id="price"
-                                            type="text"
+                                            type="number"
                                             placeholder="Precio"
                                         />
                                         {errors.price && <p className="text-red-500 text-xs italic mt-2">El precio de la habitación es requerido</p>}
@@ -153,19 +153,6 @@ export const Rooms = ({ user }) => {
                                             placeholder="Descripción"
                                         />
                                         {errors.desc && <p className="text-red-500 text-xs italic mt-2">La descripción de la habitación es requerida</p>}
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="block text-gray-700 font-bold mb-2" htmlFor="availability">
-                                            Estado
-                                        </label>
-                                        <input
-                                            {...register("availability", { required: true })}
-                                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.phone ? "border-red-500" : ""}`}
-                                            id="availability"
-                                            type="text"
-                                            placeholder="Estado"
-                                        />
-                                        {errors.availability && <p className="text-red-500 text-xs italic mt-2">El Estado de la habitación es requerido</p>}
                                     </div>
                                     <div className="mb-4">
                                         <label className="block text-gray-700 font-bold mb-2" htmlFor="capacity">

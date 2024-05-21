@@ -9,12 +9,12 @@ export const useAuth = () => {
 
     const navigate = useNavigate()
 
-     const logout = () => {
+    const logout = () => {
         localStorage.removeItem("user");
-      
-        window.location.href = "./";
-      };
-      
+        window.location.reload()
+        navigate('/')
+    };
+
 
     const registerUser = async (name, email, password, img) => {
         console.log(name, email, password, 'Hola')
