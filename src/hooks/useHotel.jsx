@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { createHotel, getHotelsByIdAdmin, deleteHotel } from "../services";
+import { createHotel, getHotelsByIdAdmin, deleteHotel, editHotel } from "../services";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -39,11 +39,22 @@ export const useHotel = () => {
             return toast.error(response.e?.response?.data || 'Ocurrió un error al agregar')
         }
     }
+
+    const updateHotel = async (idHotel, newData) => {
+        const response = await editHotel(idHotel, newData);
+        if (response.error) {
+            console.log(response.error)
+            return toast.error(response.e?.response?.data || 'Ocurrió un error al agregar')
+        }
+    };
+
+
     return {
         getHotelsByAdmin,
         isFetching: hotels.length === 0,
         addHotel,
         removeHotel,
-        hotels
+        hotels,
+        updateHotel
     }
 }

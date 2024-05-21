@@ -65,6 +65,17 @@ export const createHotel = async (id, data) => {
     }
 }
 
+export const editHotel = async (idHotel, data) => {
+    try {
+        return await apiClient.put(`/hotel/${idHotel}`, data);
+    } catch (error) {
+        return {
+            error: true,
+            e: error
+        }
+    }
+}
+
 export const getHotelsByIdAdmin = async (id) => {
     try {
         return await apiClient.get(`/hotel/${id}`);
@@ -101,6 +112,39 @@ export const getRoomsByIdAdmin = async (id) => {
 export const createRoom = async (id, data) => {
     try {
         return await apiClient.post(`/room/${id}`, data);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
+export const deleteRoom = async (id) => {
+    try {
+        return await apiClient.delete(`/room/${id}`);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
+export const editRoom = async (idRoom, data) => {
+    try {
+        return await apiClient.put(`/room/${idRoom}`, data);
+    } catch (error) {
+        return {
+            error: true,
+            e: error
+        }
+    }
+}
+
+export const searchRoomsByNumberRoom = async (numberRoom) => {
+    try {
+        return await apiClient.get('/search', { numberRoom });
     } catch (e) {
         return {
             error: true,
