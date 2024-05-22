@@ -7,6 +7,9 @@ import { Home } from "react-feather";
 
 const Navbar = () => {
   const { isLogged, userDetails, logout } = useUserDetails();
+  const userId = userDetails?.id;
+  console.log(userId)
+
   const handleLogout = () => {
     logout()
   }
@@ -31,7 +34,7 @@ const Navbar = () => {
                 <ul className="flex items-center ">
                   {/* Navbar menu content here */}
                   <li><Link to="/" className="font-bold transition hover:text-[#947c6c] cursor-pointer mr-4">Home</Link></li>
-                  <li><a className="font-bold  transition hover:text-[#947c6c] cursor-pointer mr-4">Reservations</a></li>
+                  <li><Link to={`/reservation/${userId}`} className="font-bold  transition hover:text-[#947c6c] cursor-pointer mr-4">Reservations</Link></li>
                   <li><SearchButton /></li>
                   <div className="w-px bg-gray-300 h-12"></div>
 

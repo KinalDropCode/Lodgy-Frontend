@@ -167,7 +167,7 @@ export const searchRoomsByNumberRoom = async (numberRoom) => {
 
 export const getRoomsByIdHotel = async (id) => {
     try {
-        return await apiClient.get(`/room/hotel/${id}`);
+        return await apiClient.get(`/room/${id}`);
     } catch (e) {
         return {
             error: true,
@@ -179,6 +179,17 @@ export const getRoomsByIdHotel = async (id) => {
 export const createReservation = async (id, data) => {
     try {
         return await apiClient.post(`/reservation/${id}`, data);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
+export const getReservationByIdUser = async (id) => {
+    try {
+        return await apiClient.get(`/reservation/${id}`);
     } catch (e) {
         return {
             error: true,

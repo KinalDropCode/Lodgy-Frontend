@@ -4,6 +4,7 @@ import { RegisterPage } from "./pages/register";
 import { DashboardPage } from "./pages/dashboard/DashboardPage";
 import { InformationPage } from "./pages/information/InformationPage";
 import { HotelPage } from "./pages/hotel";
+import { ReservationPage } from "./pages/reservations/ReservationPage";
 
 const routes = [
     { path: '/', element: <HomePage /> },
@@ -13,7 +14,7 @@ const routes = [
     { path: '/information/*', element: <InformationPage /> },
     { path: '/hotel/:hotelId', element: <HotelPage /> },
     { path: '/hotel/:hotelId/room/:idRoom', element: <HotelPage /> },
-
+    { path: '/reservation/:userId', element: <ReservationPage /> },
 ]
 
 export default routes
