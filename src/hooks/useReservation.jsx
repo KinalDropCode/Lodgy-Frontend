@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { createReservation, getReservationByIdUser} from "../services";
+import { createReservation, getReservationByIdUser } from "../services";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -23,9 +23,11 @@ export const useReservation = () => {
         }
     };
 
-    const addReservation = async (data, id) => {
-        const response = await createReservation(id, data);
+    const addReservation = async (data) => {
+        console.log("hola", data)
+        const response = await createReservation(data);
         if (response.error) {
+            console.log(response.e)
             console.log(response.error)
             return toast.error(response.e?.response?.data || 'Ocurrió un error al agregar')
         }

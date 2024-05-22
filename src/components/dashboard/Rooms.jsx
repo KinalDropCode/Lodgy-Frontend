@@ -72,9 +72,9 @@ export const Rooms = ({ user }) => {
 
     const onSubmit = async (data) => {
         const img = selectedPhoto;
-        const { numberRoom, price, desc, availability, capacity, hotel } = data;
+        const { numberRoom, price, desc, capacity, hotel } = data;
         const userId = user.id;
-        await addRoom({ numberRoom, price, desc, availability, capacity, img, hotel }, userId);
+        await addRoom({ numberRoom, price, desc, capacity, img, hotel }, userId);
         reset();
         document.getElementById('my_modal_2').close();
         getRoomsByAdmin(userId);
@@ -109,7 +109,7 @@ export const Rooms = ({ user }) => {
                     <div className="flex items-center mt-4 gap-x-3">
                         <button className="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600"
                             onClick={() => document.getElementById('my_modal_2').showModal()}>
-                            <Plus /> Add room
+                            <Plus /> Agregar habitación
                         </button>
                         <dialog id="my_modal_2" className="modal">
                             <div className="modal-box">

@@ -1,7 +1,16 @@
 import React from 'react'
+import { Trash2, Edit2 } from 'react-feather';
 
 export const RowRoom = ({ data, getRooms }) => {
     const { _id, numberRoom, price, availability, capacity, hotel } = data;
+
+    const handleDelete = () => {
+        // Lógica para eliminar la habitación
+    };
+
+    const handleEdit = () => {
+        // Lógica para editar la habitación
+    };
 
     return (
         <>
@@ -14,7 +23,23 @@ export const RowRoom = ({ data, getRooms }) => {
                     </span>
                 </td>
                 <td className="px-4 py-3 border">{capacity}</td>
-                <td className="px-4 py-3 border">{hotel}</td>
+                <td className="px-4 py-3 border">{hotel.name}</td>
+                <td className="px-4 py-3 border">
+                    <div className='flex space-x-2'>
+                        <button
+                            onClick={handleDelete}
+                            className='flex items-center p-1 hover:text-red-500'
+                        >
+                            <Trash2 />
+                        </button>
+                        <button
+                            onClick={handleEdit}
+                            className='flex items-center p-1 hover:text-blue-600'
+                        >
+                            <Edit2 />
+                        </button>
+                    </div>
+                </td>
             </tr>
         </>
     );

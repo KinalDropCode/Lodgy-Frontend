@@ -6,18 +6,12 @@ export const useRoom = () => {
     const [rooms, setRooms] = useState([]);
 
     const getRoomsByAdmin = async (id) => {
-        try {
-            const response = await getRoomsByIdAdmin(id);
-            if (response.error) {
-                console.error(response.error);
-                toast.error(response.e?.response?.data || 'Ocurrió un error al obtener las habitaciones');
-            } else {
-                setRooms(response.data);
-            }
-        } catch (error) {
-            console.error('Error fetching rooms:', error);
-            toast.error('Ocurrió un error al obtener las habitaciones');
+        const response = await getRoomsByIdAdmin(id);
+        if (response.error) {
+            console.error(response.error);
+            toast.error(response.e?.response?.data || 'Ocurrió un error al obtener las habitaciones');
         }
+        setRooms(response.data);
     };
 
     const addRoom = async (data, id) => {

@@ -6,10 +6,11 @@ import toast from 'react-hot-toast';
 
 export const Card = ({ data, hotelId }) => {
     const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
+    const { uid, numberRoom, price, desc, availability, capacity, img } = data;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { addReservation } = useReservation();
 
-    const { _id: roomId } = data;
+
 
     const calculateTotalPrice = (checkIn, checkOut) => {
         const start = new Date(checkIn);
@@ -23,7 +24,7 @@ export const Card = ({ data, hotelId }) => {
     const onSubmit = async (formData) => {
         const { checkIn, checkOut, observation } = formData;
         const totalPrice = calculateTotalPrice(checkIn, checkOut);
-        await addReservation({ checkIn, checkOut, totalPrice, observation, roomId, hotelId });
+        await addReservation({ hotel: hotelId, room: uid, checkIn, checkOut, totalPrice, observation });
         setIsModalOpen(false);
         reset();
     };
@@ -36,11 +37,11 @@ export const Card = ({ data, hotelId }) => {
     return (
         <>
             <div className="card w-96 bg-base-100 shadow-xl">
-                <figure><img className='p-4 bg-cover' src={data.img} alt="Room" /></figure>
+                <figure><img className='p-4 bg-cover' src={img} alt="Room" /></figure>
                 <div className="card-body">
-                    <h2 className="card-title">{data.numberRoom}</h2>
-                    <p>Q{data.price}.00</p>
-                    <p>{data.desc}</p>
+                    <h2 className="card-title">{numberRoom}</h2>
+                    <p>Q{price}.00</p>
+                    <p>{desc}</p>
                     <div className="card-actions justify-end">
                         <button
                             className="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-3 rounded-md transition-colors duration-300"

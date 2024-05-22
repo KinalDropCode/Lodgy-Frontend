@@ -15,6 +15,7 @@ export const TableRoom = ({ rooms, getRoomsByIdAdmin }) => {
                                     <th className="px-4 py-3">Estado</th>
                                     <th className="px-4 py-3">Capacidad</th>
                                     <th className="px-4 py-3">Hotel</th>
+                                    <th className="px-4 py-3">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white">
