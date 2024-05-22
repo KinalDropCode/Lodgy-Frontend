@@ -1,20 +1,27 @@
-import React from 'react'
+import React from 'react';
 
-export const RowReservation = ({ data, getRooms }) => {
-    const { _id, numberRoom, price, availability, capacity, hotel } = data;
+export const RowReservation = ({ data }) => {
+    console.log(data);
+    const { hotel, room, checkIn, checkOut, totalPrice } = data;
+
+    // Función para formatear la fecha en formato legible
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('es-ES', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+    };
 
     return (
         <>
             <tr className="text-gray-700">
-                <td className="px-4 py-3 border">{numberRoom}</td>
-                <td className="px-4 py-3 border">{price}</td>
-                <td className="px-4 py-3 border">
-                    <span className={`px-2 py-1 font-semibold leading-tight rounded-sm ${availability === 'ENABLED' ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'}`}>
-                        {availability === 'ENABLED' ? 'ENABLED' : 'DISABLED'}
-                    </span>
-                </td>
-                <td className="px-4 py-3 border">{capacity}</td>
-                <td className="px-4 py-3 border">{hotel}</td>
+                <td className="px-4 py-3 border">{hotel.name}</td>
+                <td className="px-4 py-3 border">{room.numberRoom}</td>
+                <td className="px-4 py-3 border">{formatDate(checkIn)}</td>
+                <td className="px-4 py-3 border">{formatDate(checkOut)}</td>
+                <td className="px-4 py-3 border">{totalPrice}</td>
             </tr>
         </>
     );

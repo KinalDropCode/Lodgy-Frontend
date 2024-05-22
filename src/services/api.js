@@ -54,6 +54,18 @@ export const updateUser = async (data) => {
     }
 }
 
+export const deleteUser = async () => {
+    try {
+        return await apiClient.delete('/auth/');
+
+    } catch (error) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
 export const createHotel = async (id, data) => {
     try {
         return await apiClient.post(`/hotel/${id}`, data);
@@ -176,7 +188,7 @@ export const getRoomsByIdHotel = async (id) => {
     }
 }
 
-export const createReservation = async ( data) => {
+export const createReservation = async (data) => {
     try {
         return await apiClient.post(`/reservation/`, data);
     } catch (e) {
@@ -187,9 +199,9 @@ export const createReservation = async ( data) => {
     }
 }
 
-export const getReservationByIdUser = async (id) => {
+export const getReservationByIdUser = async () => {
     try {
-        return await apiClient.get(`/reservation/${id}`);
+        return await apiClient.get(`/reservation/`);
     } catch (e) {
         return {
             error: true,
@@ -198,7 +210,7 @@ export const getReservationByIdUser = async (id) => {
     }
 }
 
-export const createEvent = async ( data) => {
+export const createEvent = async (data) => {
     try {
         return await apiClient.post(`/event/`, data);
     } catch (e) {

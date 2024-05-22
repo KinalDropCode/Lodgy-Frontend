@@ -51,9 +51,10 @@ export const useHotel = () => {
         }
     }
 
-    const updateHotel = async (idHotel, newData) => {
+    const updateHotel = async (newData, idHotel) => {
         const response = await editHotel(idHotel, newData);
         if (response.error) {
+            console.log(response.e)
             console.log(response.error)
             return toast.error(response.e?.response?.data || 'Ocurrió un error al agregar')
         }

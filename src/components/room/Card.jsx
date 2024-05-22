@@ -3,14 +3,13 @@ import { Plus } from 'react-feather';
 import { useForm } from 'react-hook-form';
 import { useReservation } from '../../hooks/useReservation';
 import toast from 'react-hot-toast';
+import { FaPerson } from "react-icons/fa6";
 
 export const Card = ({ data, hotelId }) => {
     const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
     const { uid, numberRoom, price, desc, availability, capacity, img } = data;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { addReservation } = useReservation();
-
-
 
     const calculateTotalPrice = (checkIn, checkOut) => {
         const start = new Date(checkIn);
@@ -19,7 +18,7 @@ export const Card = ({ data, hotelId }) => {
         return nights * price;
     };
 
-    const now = new Date().toISOString().split('T')[0]; // Obtener la fecha actual en formato YYYY-MM-DD
+    const now = new Date().toISOString().split('T')[0];
 
     const onSubmit = async (formData) => {
         const { checkIn, checkOut, observation } = formData;
@@ -37,18 +36,20 @@ export const Card = ({ data, hotelId }) => {
     return (
         <>
             <div className="card w-96 bg-base-100 shadow-xl">
-                <figure><img className='p-4 bg-cover' src={img} alt="Room" /></figure>
+                <figure><img className='bg-cover ' src={img} alt="Room" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{numberRoom}</h2>
                     <p>Q{price}.00</p>
                     <p>{desc}</p>
                     <div className="card-actions justify-end">
+                        <div className="badge badge-outline my-auto">{availability}</div>
+                        <div className="badge badge-outline my-auto"><FaPerson />{capacity}</div>
                         <button
-                            className="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-3 rounded-md transition-colors duration-300"
+                            disabled={availability === 'DISABLED'}
+                            className={`flex items-center bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-2 rounded-md transition-colors duration-300 ${availability === 'DISABLED' ? 'opacity-50 cursor-not-allowed' : ''}`}
                             onClick={() => setIsModalOpen(true)}
                         >
-                            <Plus className="mr-2" />
-                            Reserve
+                            Reservar
                         </button>
                     </div>
                 </div>
@@ -67,8 +68,8 @@ export const Card = ({ data, hotelId }) => {
                                     className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.checkIn ? "border-red-500" : ""}`}
                                     id="checkIn"
                                     type="date"
-                                    value={now} // Establecer el valor como la fecha actual
-                                    readOnly // Hacer que el campo no sea editable
+                                    value={now}
+                                    readOnly
                                 />
                                 {errors.checkIn && <p className="text-red-500 text-xs italic mt-2">Check-In date is required</p>}
                             </div>

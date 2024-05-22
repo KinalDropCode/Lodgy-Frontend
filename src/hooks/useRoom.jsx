@@ -42,9 +42,12 @@ export const useRoom = () => {
         }
     }
 
-    const updateRoom = async (idRoom, newData) => {
+    const updateRoom = async (newData, idRoom) => {
         const response = await editRoom(idRoom, newData);
         if (response.error) {
+            console.log(response.error)
+            console.log(response.data)
+            console.log(response.e)
             return toast.error(response.e?.response?.data || 'Ocurrió un error al agregar')
         }
     };

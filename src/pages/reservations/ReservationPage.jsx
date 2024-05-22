@@ -1,9 +1,14 @@
 import Navbar from "../../components/navbar/Navbar"
+import { RowReservation } from "../../components/reservation/RowReservation";
 import { useReservation } from '../../hooks/useReservation';
+import { useEffect } from "react";
 
 export const ReservationPage = () => {
 
     const { getReservationByUser, reservations } = useReservation();
+    useEffect(() => {
+        getReservationByUser()
+    }, []);
 
     return (
         <>
@@ -23,7 +28,9 @@ export const ReservationPage = () => {
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white">
-
+                                    {reservations.map(reservation => (
+                                        <RowReservation key={reservation.uid} data={reservation}/>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

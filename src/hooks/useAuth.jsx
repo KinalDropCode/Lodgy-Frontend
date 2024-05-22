@@ -11,8 +11,8 @@ export const useAuth = () => {
 
     const logout = () => {
         localStorage.removeItem("user");
-        window.location.reload()
         navigate('/')
+        window.location.reload()
     };
 
 

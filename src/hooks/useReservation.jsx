@@ -8,19 +8,14 @@ export const useReservation = () => {
 
     const [reservations, setReservation] = useState([]);
 
-    const getReservationByUser = async (id) => {
-        try {
-            const response = await getReservationByIdUser(id);
-            if (response.error) {
-                console.error(response.error);
-                toast.error(response.e?.response?.data || 'Ocurrió un error al obtener las habitaciones');
-            } else {
-                setReservation(response.data);
-            }
-        } catch (error) {
-            console.error('Error fetching rooms:', error);
-            toast.error('Ocurrió un error al obtener las habitaciones');
+    const getReservationByUser = async () => {
+        const response = await getReservationByIdUser();
+        if (response.error) {
+            console.log(response.e)
+            console.error(response.error);
+            toast.error(response.e?.response?.data || 'Ocurrió un error al obtener las habitaciones');
         }
+        setReservation(response.data);
     };
 
     const addReservation = async (data) => {
@@ -31,6 +26,7 @@ export const useReservation = () => {
             console.log(response.error)
             return toast.error(response.e?.response?.data || 'Ocurrió un error al agregar')
         }
+        return toast.success("Se realizo con exito su reservacion")
     }
 
     return {

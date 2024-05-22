@@ -13,8 +13,7 @@ const routes = [
     { path: '/dashboard/*', element: <DashboardPage /> },
     { path: '/information/*', element: <InformationPage /> },
     { path: '/hotel/:hotelId', element: <HotelPage /> },
-    { path: '/hotel/:hotelId/room/:idRoom', element: <HotelPage /> },
-    { path: '/reservation/:userId', element: <ReservationPage /> },
+    { path: '/reservation/', element: <ReservationPage /> },
 ]
 
 export default routes
