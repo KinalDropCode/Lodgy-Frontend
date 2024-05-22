@@ -175,3 +175,14 @@ export const getRoomsByIdHotel = async (id) => {
         }
     }
 }
+
+export const createReservation = async (id, data) => {
+    try {
+        return await apiClient.post(`/reservation/${id}`, data);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
