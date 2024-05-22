@@ -197,3 +197,47 @@ export const getReservationByIdUser = async (id) => {
         }
     }
 }
+
+export const createEvent = async ( data) => {
+    try {
+        return await apiClient.post(`/event/`, data);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
+export const getEventsByIdUser = async (id) => {
+    try {
+        return await apiClient.get(`/event/${id}`);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
+export const getEventsByIdHotel = async (id) => {
+    try {
+        return await apiClient.get(`/event/hotel/${id}`);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
+export const deleteEvent = async (id) => {
+    try {
+        return await apiClient.delete(`/event/${id}`);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
