@@ -26,11 +26,11 @@ export const HomePage = () => {
                     <div className="max-w-md">
                         <h1 className="mb-5 text-5xl font-bold">Find Your Perfect Hotel</h1>
                         <p className="py-6">Explore a wide selection of hotels in popular destinations. Reserve with us and get the best guaranteed rates!</p>
-                        <button className=" bg-[#887063] hover:bg-[#947c6c] transition text-white font-semibold rounded-md py-2 px-4 ">book now </button>
+                        <button className=" bg-[#887063] hover:bg-[#947c6c] transition text-white font-semibold rounded-md py-2 px-4 " onClick={() => window.location.href='#hotels'}>Reserve now</button>
                     </div>
                 </div>
             </div>
-            <div className="max-w-screen-2xl mx-auto p-5 sm:p-10 md:p-16">
+            <div id="hotels" className="max-w-screen-2xl mx-auto p-5 sm:p-10 md:p-16">
                 <div className="flex flex-col justify-center items-center gap-4 w-full">
                     {hotels.map(hotel => (
                         <Card key={hotel._id} data={hotel} />
